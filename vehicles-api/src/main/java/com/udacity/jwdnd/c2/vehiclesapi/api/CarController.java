@@ -17,12 +17,12 @@ public class CarController {
     }
 
     @GetMapping
-    public List<Car> list() {
+    public List<CarResponse> list() {
         return carService.list();
     }
 
     @GetMapping("/{id}")
-    public Car get(@PathVariable Long id) {
+    public CarResponse get(@PathVariable Long id) {
         return carService.findById(id);
     }
 
