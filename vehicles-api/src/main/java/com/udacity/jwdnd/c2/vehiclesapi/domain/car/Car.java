@@ -6,10 +6,12 @@ import jakarta.validation.constraints.NotNull;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import com.udacity.jwdnd.c2.vehiclesapi.domain.Condition;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 public class Car {
 
     @Id
@@ -17,9 +19,11 @@ public class Car {
     private Long id;
 
     @CreatedDate
+    @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
     @LastModifiedDate
+    @Column(nullable = false)
     private LocalDateTime modifiedAt;
 
     @NotNull
