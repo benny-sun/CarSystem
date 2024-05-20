@@ -15,7 +15,10 @@ public class CarResponse {
     private Details details;
     private BigDecimal price;
 
-    public CarResponse(Car car, String price) {
+    public CarResponse() {
+
+    }
+
     public CarResponse(Car car, BigDecimal price) {
         this.id = car.getId();
         this.createdAt = car.getCreatedAt();
@@ -47,5 +50,29 @@ public class CarResponse {
 
     public BigDecimal getPrice() {
         return price;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public void setModifiedAt(LocalDateTime modifiedAt) {
+        this.modifiedAt = modifiedAt;
+    }
+
+    public void setCondition(Condition condition) {
+        this.condition = condition;
+    }
+
+    public void setDetails(Details details) {
+        this.details = details;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
 }

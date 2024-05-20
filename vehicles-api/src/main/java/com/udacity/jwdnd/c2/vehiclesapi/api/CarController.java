@@ -27,15 +27,15 @@ public class CarController {
     }
 
     @PostMapping
-    public Car create(@RequestBody Car car) {
-        return carService.save(car);
+    public CarResponse create(@RequestBody CarRequest request) {
+        return carService.save(request);
     }
 
     @PutMapping("/{id}")
-    public Car update(@PathVariable Long id, @RequestBody Car car) {
+    public CarResponse update(@PathVariable Long id, @RequestBody CarRequest request) {
         carService.findById(id); // check if car exist
-        car.setId(id);
-        return carService.save(car);
+        request.setId(id);
+        return carService.save(request);
     }
 
     @DeleteMapping("/{id}")

@@ -1,5 +1,6 @@
 package com.udacity.jwdnd.c2.vehiclesapi.services;
 
+import com.udacity.jwdnd.c2.vehiclesapi.api.CarRequest;
 import com.udacity.jwdnd.c2.vehiclesapi.api.CarResponse;
 import com.udacity.jwdnd.c2.vehiclesapi.clients.pricing.Price;
 import com.udacity.jwdnd.c2.vehiclesapi.clients.pricing.PriceClient;
@@ -43,8 +44,23 @@ public class CarService {
         return new CarResponse(car, price.getPrice());
     }
 
-    public Car save(Car car) {
-        return repository.save(car);
+    public CarResponse save(CarRequest carRequest) {
+        Car car = new Car();
+        car.setId(carRequest.getId());
+        car.setCondition(carRequest.getCondition());
+        car.setDetails(carRequest.getDetails());
+        Car savedCar = repository.save(car);
+
+        Price price = new Price();
+        price.setVehicleId(savedCar.getId());
+        price.setPrice(carRequest.getPrice());
+        price.setCurrency("USD");
+
+        Price savedPrice = carRequest.getId() == null
+                ? priceClient.createPrice(price)
+                : priceClient.updatePrice(savedCar.getId(), price);
+
+        return new CarResponse(savedCar, savedPrice.getPrice());
     }
 
     public void delete(Long id) {
