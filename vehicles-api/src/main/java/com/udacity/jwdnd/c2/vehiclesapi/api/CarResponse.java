@@ -1,5 +1,6 @@
 package com.udacity.jwdnd.c2.vehiclesapi.api;
 
+import com.udacity.jwdnd.c2.vehiclesapi.domain.Location;
 import com.udacity.jwdnd.c2.vehiclesapi.domain.Condition;
 import com.udacity.jwdnd.c2.vehiclesapi.domain.car.Car;
 import com.udacity.jwdnd.c2.vehiclesapi.domain.car.Details;
@@ -14,18 +15,20 @@ public class CarResponse {
     private Condition condition;
     private Details details;
     private BigDecimal price;
+    private Location location;
 
     public CarResponse() {
 
     }
 
-    public CarResponse(Car car, BigDecimal price) {
+    public CarResponse(Car car, BigDecimal price, Location location) {
         this.id = car.getId();
         this.createdAt = car.getCreatedAt();
         this.modifiedAt = car.getModifiedAt();
         this.condition = car.getCondition();
         this.details = car.getDetails();
         this.price = price;
+        this.location = location;
     }
 
     public Long getId() {
@@ -52,6 +55,10 @@ public class CarResponse {
         return price;
     }
 
+    public Location getLocation() {
+        return location;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -74,5 +81,9 @@ public class CarResponse {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
     }
 }
