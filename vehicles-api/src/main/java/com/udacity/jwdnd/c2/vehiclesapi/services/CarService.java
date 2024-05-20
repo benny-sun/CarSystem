@@ -32,7 +32,7 @@ public class CarService {
                 .collect(Collectors.toMap(Price::getVehicleId, Price::getPrice));
 
         return cars.stream()
-                .map(car -> new CarResponse(car, priceMap.get(car.getId()).toString()))
+                .map(car -> new CarResponse(car, priceMap.get(car.getId())))
                 .collect(Collectors.toList());
     }
 
@@ -40,7 +40,7 @@ public class CarService {
         Car car = repository.findById(id).orElseThrow(() -> new CarNotFoundException(id));
         Price price = priceClient.getPrice(id);
 
-        return new CarResponse(car, price.getPrice().toString());
+        return new CarResponse(car, price.getPrice());
     }
 
     public Car save(Car car) {

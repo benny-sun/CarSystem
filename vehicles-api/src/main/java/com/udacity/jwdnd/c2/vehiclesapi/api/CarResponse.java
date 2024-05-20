@@ -4,6 +4,7 @@ import com.udacity.jwdnd.c2.vehiclesapi.domain.Condition;
 import com.udacity.jwdnd.c2.vehiclesapi.domain.car.Car;
 import com.udacity.jwdnd.c2.vehiclesapi.domain.car.Details;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public class CarResponse {
@@ -12,9 +13,10 @@ public class CarResponse {
     private LocalDateTime modifiedAt;
     private Condition condition;
     private Details details;
-    private String price;
+    private BigDecimal price;
 
     public CarResponse(Car car, String price) {
+    public CarResponse(Car car, BigDecimal price) {
         this.id = car.getId();
         this.createdAt = car.getCreatedAt();
         this.modifiedAt = car.getModifiedAt();
@@ -43,7 +45,7 @@ public class CarResponse {
         return details;
     }
 
-    public String getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 }
