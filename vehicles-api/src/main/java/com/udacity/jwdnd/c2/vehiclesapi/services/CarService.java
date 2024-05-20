@@ -7,6 +7,7 @@ import com.udacity.jwdnd.c2.vehiclesapi.clients.pricing.PriceClient;
 import com.udacity.jwdnd.c2.vehiclesapi.clients.pricing.PriceResponse;
 import com.udacity.jwdnd.c2.vehiclesapi.domain.car.Car;
 import com.udacity.jwdnd.c2.vehiclesapi.domain.car.CarRepository;
+import feign.FeignException;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -65,5 +66,10 @@ public class CarService {
 
     public void delete(Long id) {
         repository.deleteById(id);
+        try {
+            priceClient.delete(id);
+        } catch (FeignException.NotFound e) {
+            throw new CarNotFoundException(id);
+        }
     }
 }

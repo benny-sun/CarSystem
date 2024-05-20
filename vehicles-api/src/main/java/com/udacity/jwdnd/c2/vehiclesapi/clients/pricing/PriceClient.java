@@ -16,4 +16,7 @@ public interface PriceClient {
 
     @PutMapping("/prices/{id}")
     Price updatePrice(@PathVariable("id") Long id, @RequestBody Price price);
+
+    @DeleteMapping("/prices/{id}")
+    void delete(@PathVariable("id") Long id);
 }
