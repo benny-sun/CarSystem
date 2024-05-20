@@ -1,6 +1,5 @@
 package com.udacity.jwdnd.c2.vehiclesapi.api;
 
-import com.udacity.jwdnd.c2.vehiclesapi.domain.car.Car;
 import com.udacity.jwdnd.c2.vehiclesapi.services.CarService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
